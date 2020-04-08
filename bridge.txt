@@ -1,0 +1,34 @@
+Santander
+
+CONFLICT (add/add): Merge conflict in src/test/java/com/stratio/financial/one/trade/accounts/infrastructure/rest/spring/api/v2/resource/AccountsApiResourceTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/accounts/infrastructure/rest/spring/api/v2/resource/AccountsApiResourceTest.java
+CONFLICT (add/add): Merge conflict in src/test/java/com/stratio/financial/one/trade/accounts/infrastructure/rest/spring/api/v1/resource/AccountsApiResourceTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/accounts/infrastructure/rest/spring/api/v1/resource/AccountsApiResourceTest.java
+CONFLICT (add/add): Merge conflict in src/test/java/com/stratio/financial/one/trade/accounts/application/service/AccountServiceImplTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/accounts/application/service/AccountServiceImplTest.java
+CONFLICT (add/add): Merge conflict in src/main/java/com/stratio/financial/one/trade/accounts/infrastructure/rest/spring/api/v2/resource/AccountsApiResource.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/accounts/infrastructure/rest/spring/api/v2/resource/AccountsApiResource.java
+CONFLICT (add/add): Merge conflict in src/main/java/com/stratio/financial/one/trade/accounts/infrastructure/rest/spring/api/v1/resource/AccountsApiResource.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/accounts/infrastructure/rest/spring/api/v1/resource/AccountsApiResource.java
+CONFLICT (add/add): Merge conflict in src/main/java/com/stratio/financial/one/trade/accounts/application/service/impl/AccountServiceImpl.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/accounts/application/service/impl/AccountServiceImpl.java
+CONFLICT (add/add): Merge conflict in src/main/java/com/stratio/financial/one/trade/accounts/application/service/AccountService.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/accounts/application/service/AccountService.java
+CONFLICT (add/add): Merge conflict in pom.xml
+Auto-merging pom.xml
+CONFLICT (add/add): Merge conflict in Jenkinsfile
+Auto-merging Jenkinsfile
+CONFLICT (add/add): Merge conflict in .gitignore
+Auto-merging .gitignore
+Merge made by the 'recursive' strategy.
+ .gitignore                                           |  3 ++-
+ Jenkinsfile                                          | 20 +++++++++-----------
+ pom.xml                                              |  2 +-
+ .../accounts/application/service/AccountService.java |  4 +---
+ .../application/service/impl/AccountServiceImpl.java | 14 +++++++++-----
+ .../spring/api/v1/resource/AccountsApiResource.java  |  2 +-
+ .../spring/api/v2/resource/AccountsApiResource.java  |  2 +-
+ .../application/service/AccountServiceImplTest.java  | 11 ++++++++++-
+ .../api/v1/resource/AccountsApiResourceTest.java     |  2 +-
+ .../api/v2/resource/AccountsApiResourceTest.java     |  2 +-
+ 10 files changed, 36 insertions(+), 26 deletions(-)
