@@ -55,11 +55,17 @@ then
     git checkout master
 	masterVersion=$(grep -oPm1 "(?<=<version>)[^<]+" "pom.xml")
     git checkout $REPOS_INTEGRATION_BRANCH
-    git merge -X theirs --allow-unrelated-histories -m "New application changes from Stratio version ${masterVersion}" master
-    newProjectVersion="${masterVersion}-SNAPSHOT"
-	LN=$(grep -n "<version>" pom.xml | head -1 | awk -F ":" '{print $1}')
-    sed -i "$LN s/$masterVersion/$newProjectVersion/" pom.xml
-    git commit pom.xml -m "Set app version to ${newProjectVersion}"
+	git merge -X theirs --allow-unrelated-histories -m "New application changes from Stratio version ${masterVersion}" master
+	integrationVersion=$(grep -oPm1 "(?<=<version>)[^<]+" "pom.xml")
+	# If integration branch santander-stratio is not -SNAPSHOT is a promotion (else if being re-run the script)
+	if [[ "$integrationVersion" != *-SNAPSHOT ]]
+	then
+		newProjectVersion="${masterVersion}-SNAPSHOT"
+		echo "[INFO] Changing version from $masterVersion to $newProjectVersion"
+		LN=$(grep -n "<version>" pom.xml | head -1 | awk -F ":" '{print $1}')
+		sed -i "$LN s/$masterVersion/$newProjectVersion/" pom.xml
+		git commit pom.xml -m "Set app version to ${newProjectVersion}"
+	fi
     git push stratio $REPOS_INTEGRATION_BRANCH
     cd .. && rm -rf "${WORKDIR}"
 
