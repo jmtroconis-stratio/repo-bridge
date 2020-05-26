@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+# v2.0
+
 if [ "$#" -ne 2 ]; then
     echo "usage: $0 stratio_repo_url santander_repo_url" >&2
     exit 1
@@ -46,7 +48,7 @@ then
     git remote add stratio $STRATIO_REPO
     git push stratio $REPOS_INTEGRATION_BRANCH
     cd .. && rm -rf "${WORKDIR}"
-	
+
     echo ""
     echo "STEP 2/3 - Merge into Stratio integration branch $REPOS_INTEGRATION_BRANCH changes in master. Application version in master will be used in GitHub Santander (should be a SNAPSHOT version)"
     WORKDIR="$(mktemp -d)"
