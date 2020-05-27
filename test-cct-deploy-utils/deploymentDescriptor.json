@@ -1,0 +1,39 @@
+{
+    "general":     {
+        "serviceId": "cicdcd/simplemicroservice",
+        "CPUs": 0.5,
+        "MEM": 2048,
+        "INSTANCES": 1,
+        "DISK": 0,
+        "GPUs": 0,
+        "networkName": "cicdcd-core"
+    },
+    "environment":     {
+        "postgresUrl": "jdbc:postgresql://gtsassdfsd-poolpgdata.gts.marathon.mesos:5432/gts",
+        "vaultHost": "vault.service.eos.sgcto.int",
+        "configServerUri": "http://config-server.infrastructure.marathon.mesos:8080",
+        "springCloudConfigEnabled": false,
+        "asTriggerMode": "all",
+        "asMinInstances": 1,
+        "asCoolDownFactor": 3,
+        "asMicroservice": true,
+        "asMinMemPercent": 60,
+        "asMaxInstances": 1,
+        "asMaxCpuTime": 80,
+        "asMetricsPortName": "metrics",
+        "asMaxMemPercent": 85,
+        "asMinCpuTime": 60,
+        "asAutoscaleMultiplier": 1.5,
+        "asTriggerNumber": 2,
+        "configServerName": "config-server",
+        "vaultPort": 8200,
+        "springProfilesActive": "dev,info,default",
+        "deploymentEnv": "dev",
+        "approle": "{secret=role}",
+        "springKafkaBrokers": "broker-0001.gts-kafka.gts.mesos:9092,broker-0002.gts-kafka.gts.mesos:9092,broker-0003.gts-kafka.gts.mesos:9092",
+        "NEXUS_ARTIFACT_URL": "http://cicdcd-nexus.cicdcd.marathon.mesos:8081/repository/maven-snapshots/com/stratio/cicdcd/simple/simplemicroservice/0.4.0-SNAPSHOT/simplemicroservice-0.4.0-20200518.181245-1.jar",
+        "RESOURCES_BASE_PATH": "BOOT-INF/classes/ci",
+        "BUILD_NUMBER": "100"
+    }
+}
+
