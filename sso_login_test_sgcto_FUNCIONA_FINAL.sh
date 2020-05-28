@@ -40,15 +40,6 @@ function filter_lt_value() {
     echo $RET_VALUE
 }
 
-function filter_ticket_value() {
-    RET_VALUE=$(echo $1 \
-        | grep -oE "ticket[^ ]+" \
-        | sed "s/ticket=//g" \
-        | grep -oE "[^ ]+" \
-        | tr -d "\r")
-    echo $RET_VALUE
-}
-
 function filter_user_value() {
     RET_VALUE=$(echo $1 \
         | grep -oE "user=[a-z0-9\-]+" \
@@ -103,10 +94,10 @@ EXECUTION=$(filter_execution_value "$AUTHORIZE_RESPONSE")
 
 LT=$(filter_lt_value "$AUTHORIZE_RESPONSE")
 
-LOCATION_REDIRECT=$(curl -X POST $SPARTA_LOGIN_URI -k -i -s -w 'http_status=(%{http_code})' -H "Cookie: JSESSIONID=$JSESSIONID" --data "lt=$LT&execution=$EXECUTION&_eventId=submit&username=$USERLOGIN&password=$PASSWD&tenant=$TENANT" | grep -oP 'location: \K.*')
+LOCATION_REDIRECT=$(curl -X POST $SPARTA_LOGIN_URI -k -i -s -w 'http_status=(%{http_code})' -H "Cookie: JSESSIONID=$JSESSIONID" --data "lt=$LT&execution=$EXECUTION&_eventId=submit&username=$USERLOGIN&password=$PASSWD&tenant=$TENANT" | grep -oP '(L|l)ocation: \K.*')
 LOCATION_REDIRECT=${LOCATION_REDIRECT%$'\r'}
 
-LOCATION_REDIRECT=$(curl $LOCATION_REDIRECT -k -i -s -H "Cookie: JSESSIONID=$JSESSIONID" | grep -oP 'location: \K.*')
+LOCATION_REDIRECT=$(curl $LOCATION_REDIRECT -k -i -s -H "Cookie: JSESSIONID=$JSESSIONID" | grep -oP '(L|l)ocation: \K.*')
 LOCATION_REDIRECT=${LOCATION_REDIRECT%$'\r'}
 
 LOGIN_RESPONSE=$(curl -X GET "$LOCATION_REDIRECT" -k -i -s)
