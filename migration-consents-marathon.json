@@ -1,0 +1,97 @@
+{
+  "env": {
+    "VAULT_HOST": "vault.service.eos.sgcto.int",
+    "SPRING_JPA_SHOW_SQL": "false",
+    "STRATIO_KAFKA_STARTER_RETRY_EXCEPTIONCLASSES": "org.springframework.dao.DataAccessException",
+    "SPRING_CLOUD_CONFIG_ENABLED": "false",
+    "spring_flyway_enabled": "true",
+    "POSTGRES_URL": "jdbc:postgresql://gts-poolpgdata.gts.marathon.mesos:5432/gts",
+    "CONFIG_SERVER_NAME": "config-server",
+    "VAULT_PORT": "8200",
+    "SPRING_KAFKA_BOOTSTRAP_SERVERS": "broker-0001.gts-kafka.gts.mesos:9092,broker-0002.gts-kafka.gts.mesos:9092,broker-0003.gts-kafka.gts.mesos:9092",
+    "SPRING_DATASOURCE_URL": "",
+    "spring_profiles_active": "dev,info,default",
+    "DEPLOYMENT_ENV": "dev"
+  },
+  "labels": {
+    "PROMETHEUS_JOB": "gts.consents.gts-onetradeconsents"
+  },
+  "id": "/gts/consents/gts-onetradeconsents",
+  "backoffFactor": 1.15,
+  "backoffSeconds": 1,
+  "container": {
+    "portMappings": [
+      {
+        "containerPort": 8080,
+        "servicePort": 10124,
+        "name": "app"
+      },
+      {
+        "containerPort": 8091,
+        "labels": {
+          "metrics_path": "/prometheus"
+        },
+        "servicePort": 10125,
+        "name": "metrics"
+      }
+    ],
+    "type": "DOCKER",
+    "volumes": [
+      {
+        "containerPath": "/etc/resolv.conf",
+        "hostPath": "/etc/resolv.conf",
+        "mode": "RO"
+      }
+    ],
+    "docker": {
+      "image": "bootstrap.sgcto.int:5000/onetradeconsents:1.0.2-SNAPSHOT",
+      "forcePullImage": true,
+      "privileged": false,
+      "parameters": []
+    }
+  },
+  "cpus": 1,
+  "disk": 0,
+  "healthChecks": [
+    {
+      "gracePeriodSeconds": 300,
+      "ignoreHttp1xx": false,
+      "intervalSeconds": 20,
+      "maxConsecutiveFailures": 10,
+      "portIndex": 1,
+      "timeoutSeconds": 20,
+      "delaySeconds": 15,
+      "protocol": "HTTP",
+      "path": "/health",
+      "ipProtocol": "IPv4"
+    }
+  ],
+  "instances": 0,
+  "maxLaunchDelaySeconds": 3600,
+  "mem": 1024,
+  "gpus": 0,
+  "networks": [
+    {
+      "name": "gts-users",
+      "mode": "container"
+    }
+  ],
+  "requirePorts": false,
+  "secrets": {
+    "role": {
+      "source": "open"
+    }
+  },
+  "taskKillGracePeriodSeconds": 3,
+  "upgradeStrategy": {
+    "maximumOverCapacity": 1,
+    "minimumHealthCapacity": 1
+  },
+  "killSelection": "YOUNGEST_FIRST",
+  "unreachableStrategy": {
+    "inactiveAfterSeconds": 0,
+    "expungeAfterSeconds": 0
+  },
+  "fetch": [],
+  "constraints": []
+}
