@@ -1,0 +1,158 @@
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/resource/output/paymentEventResponseDto_paymentsEvents.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/resource/output/excelXml_searchOutputXml_case2.xml
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/resource/output/excelXml_searchOutputXml_case1.xml
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/resource/input/paymentSummaryData_searchOutputXml_case2.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/resource/input/elasticResponse.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/mapper/paymentResourceRegister_02.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/mapper/paymentResourceRegister_01.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/mapper/paymentResourceRegisterDto_02.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/mapper/paymentResourceRegisterDto_01.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/mapper/output/mapper_paymentResponseDto_case2.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/mapper/input/mapper_paymentEventData_case3.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/mapper/input/mapper_paymentData_case1.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_9.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_8.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_7.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_6.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_5.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_4.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_3.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_23.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_22.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_21.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_20.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_2.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_19.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_18.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_17.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_16.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_15.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_14.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_13.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_12.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_11.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_10.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/output/parsed_mt_message_1.json
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/input/mt_message_14
+Auto-merging src/test/resources/payments/infrastructure/rest/spring/db/msg/events/Event.json
+Auto-merging src/test/resources/payments/infrastructure/es/searchResponse.json
+Auto-merging src/test/resources/payments/infrastructure/es/parser/elasticSearchQueryWithAllPostSearchFields_test2.json
+Auto-merging src/test/resources/payments/infrastructure/es/parser/elasticSearchQueryWithAllCommonFields.json
+Auto-merging src/test/resources/payments/infrastructure/conductor/input/mt_message_8.json
+Auto-merging src/test/resources/payments/infrastructure/conductor/input/mt_message_7.json
+Auto-merging src/test/resources/payments/infrastructure/conductor/input/mt_message_6.json
+Auto-merging src/test/resources/payments/infrastructure/conductor/input/mt_message_0.json
+CONFLICT (rename/rename): Rename "onetradepayments/src/test/resources/payments/infraestructure/db/springdata/repository/QueryTest.json"->"src/test/resources/payments/infraestructure/db/springdata/repository/QueryTest.json" in branch "HEAD" rename "onetradepayments/src/test/resources/payments/infraestructure/db/springdata/repository/QueryTest.json"->"src/test/resources/payments/infrastructure/db/springdata/repository/QueryTest.json" in "master"
+CONFLICT (rename/rename): Rename "onetradepayments/src/test/resources/payments/infraestructure/db/springdata/repository/PaymentTest.json"->"src/test/resources/payments/infraestructure/db/springdata/repository/PaymentTest.json" in branch "HEAD" rename "onetradepayments/src/test/resources/payments/infraestructure/db/springdata/repository/PaymentTest.json"->"src/test/resources/payments/infrastructure/db/springdata/repository/PaymentTest.json" in "master"
+Auto-merging src/test/resources/payments/infraestructure/db/springdata/repository/PaymentTest.json and src/test/resources/payments/infrastructure/db/springdata/repository/PaymentTest.json, both renamed from onetradepayments/src/test/resources/payments/infraestructure/db/springdata/repository/PaymentTest.json
+CONFLICT (rename/rename): Rename "onetradepayments/src/test/resources/payments/infraestructure/db/springdata/repository/PaymentEventsTest.json"->"src/test/resources/payments/infraestructure/db/springdata/repository/PaymentEventsTest.json" in branch "HEAD" rename "onetradepayments/src/test/resources/payments/infraestructure/db/springdata/repository/PaymentEventsTest.json"->"src/test/resources/payments/infrastructure/db/springdata/repository/PaymentEventsTest.json" in "master"
+Auto-merging src/test/resources/payments/infraestructure/db/springdata/repository/PaymentEventsTest.json and src/test/resources/payments/infrastructure/db/springdata/repository/PaymentEventsTest.json, both renamed from onetradepayments/src/test/resources/payments/infraestructure/db/springdata/repository/PaymentEventsTest.json
+Auto-merging src/test/resources/payments/application/paymentservice/output/payment_fromPodam_result.json
+Auto-merging src/test/resources/payments/application/paymentservice/input/payment_fromPodam.json
+Auto-merging src/test/resources/payments/application/paymentservice/input/eventToConsume_fromPodam.json
+Auto-merging src/test/resources/payments/application/PaymentDataToConvertToPain002withoutEvents.json
+Auto-merging src/test/resources/payments/application/PaymentDataToConvertToPain002ReasonMap.json
+Auto-merging src/test/resources/payments/application/PaymentDataToConvertToPain002.json
+Auto-merging src/test/resources/consumer/event_to_consume.json
+Auto-merging src/test/resources/application-test.yaml
+CONFLICT (add/add): Merge conflict in src/test/java/com/stratio/financial/one/trade/payments/integration/GpiTrackerIntegrationTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/integration/GpiTrackerIntegrationTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/resource/PaymentsXmlPostTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/resource/PaymentsPaymentLastPaymentsIntegrationTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/resource/PaymentsPaymentIdMt103GetIntegrationTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/resource/PaymentsGetIntegrationTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/resource/PaymentsEventsGetIntegrationTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/resource/PaymentsAccountsCurrenciesPostIntegrationTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/resource/PaymentsAccountsCountriesPostIntegrationTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/resource/PaymentsAccountsAgentsPostIntegrationTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/resource/PaymentResourceTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/mapper/PaymentMapperTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/message/stratiokafka/producer/StratioKafkaPaymentEventProducerAdapterTest.java
+CONFLICT (rename/delete): onetradepayments/src/test/java/com/stratio/financial/one/trade/payments/infrastructure/message/stratiokafka/consumer/StratioKafkaEventConsumerTest.java deleted in master and renamed to src/test/java/com/stratio/financial/one/trade/payments/infrastructure/message/stratiokafka/consumer/StratioKafkaEventConsumerTest.java in HEAD. Version HEAD of src/test/java/com/stratio/financial/one/trade/payments/infrastructure/message/stratiokafka/consumer/StratioKafkaEventConsumerTest.java left in tree.
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/message/stratiokafka/consumer/StratioKafkaAgentEventConsumerIntegrationTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/message/stratiokafka/consumer/StratioKafkaAccountEventConsumerIntegrationTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/message/jms/consumer/MT103ConsumerIntegrationTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/message/jms/consumer/JmsErrorHandlerTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/es/StratioSearcherRepositoryTest.java
+CONFLICT (rename/delete): onetradepayments/src/test/java/com/stratio/financial/one/trade/payments/infrastructure/es/PaymentRequestParserTest.java deleted in master and renamed to src/test/java/com/stratio/financial/one/trade/payments/infrastructure/es/PaymentRequestParserTest.java in HEAD. Version HEAD of src/test/java/com/stratio/financial/one/trade/payments/infrastructure/es/PaymentRequestParserTest.java left in tree.
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/infrastructure/conductor/PaymentWorkerIntegrationTest.java
+CONFLICT (add/add): Merge conflict in src/test/java/com/stratio/financial/one/trade/payments/application/util/AgentUtilsTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/application/util/AgentUtilsTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/application/service/PaymentServiceTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/application/service/PaymentServiceEventTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/application/service/ParametrizedMtMessageParserTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/application/service/MtMessageParserTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/application/service/MtMessageBatchParserTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/application/service/MessageRawServiceTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/application/service/Block4MtMessageParserTest.java
+Auto-merging src/test/java/com/stratio/financial/one/trade/payments/application/pain002/Pain002ServiceTest.java
+Auto-merging src/main/resources/excel/mt103_excel_xml_format.xml
+Auto-merging src/main/resources/db/migration/V1.12__remove_entitycountry_add_country.sql
+Auto-merging src/main/resources/application-local.yaml
+Auto-merging src/main/resources/application-integration.yaml
+Auto-merging src/main/resources/application-dev.yaml
+Auto-merging src/main/resources/api.yaml
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/resource/PaymentResource.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/mapper/SearchGenericMapper.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/mapper/ResourceRegisterMapper.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/mapper/PaymentMapper.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/rest/spring/mapper/AccountMapper.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/pdf/mapper/PdfMapper.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/message/stratiokafka/model/CompanyMemberEvent.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/message/stratiokafka/model/CompanyMemberAccountIdEvent.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/message/stratiokafka/model/CompanyMemberAccountEvent.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/message/stratiokafka/model/AccountEvent.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/message/stratiokafka/consumer/StratioKafkaEventConsumerAdapter.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/message/stratiokafka/consumer/StratioKafkaAccountEventConsumer.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/message/jms/consumer/JmsErrorHandler.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/excel/mapper/ExcelMapper.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/es/StratioSearcherRepository.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/es/RestTemplateResponseErrorHandler.java
+CONFLICT (add/add): Merge conflict in src/main/java/com/stratio/financial/one/trade/payments/infrastructure/es/RequestResponseLoggingInterceptor.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/es/RequestResponseLoggingInterceptor.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/es/PaymentRequestParser.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/db/springdata/repository/SpringDataPaymentRepository.java
+CONFLICT (add/add): Merge conflict in src/main/java/com/stratio/financial/one/trade/payments/infrastructure/db/springdata/repository/CustomPaymentRepository.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/db/springdata/repository/CustomPaymentRepository.java
+CONFLICT (add/add): Merge conflict in src/main/java/com/stratio/financial/one/trade/payments/infrastructure/db/springdata/repository/CriteriaEntityRepository.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/db/springdata/repository/CriteriaEntityRepository.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/infrastructure/config/spring/StratioSpringBootServiceConfig.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/worker/PaymentResource.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/persistence/PaymentEvent.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/persistence/Payment.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/persistence/MtMessage.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/persistence/Country.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/persistence/Agent.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/persistence/Account.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/event/consumed/TransactionStatus.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/event/consumed/PaymentEvent.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/event/consumed/Amount.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/data/PaymentEventData.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/data/PaymentData.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/data/MtMessageData.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/domain/PaymentSearchPost.java
+CONFLICT (rename/delete): onetradepayments/src/main/java/com/stratio/financial/one/trade/payments/domain/PaymentSearchCommon.java deleted in master and renamed to src/main/java/com/stratio/financial/one/trade/payments/domain/PaymentSearchCommon.java in HEAD. Version HEAD of src/main/java/com/stratio/financial/one/trade/payments/domain/PaymentSearchCommon.java left in tree.
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/application/service/impl/PaymentServiceImpl.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/application/service/impl/Pain002ServiceImpl.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/application/service/PaymentService.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/application/repository/PaymentRepository.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/application/repository/PaymentDataRepository.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/application/parser/message/WrongMt103BodyException.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/application/parser/message/WrongAckMessageBodyException.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/application/parser/message/MtMessageParserImpl.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/application/parser/message/MtMessageParserException.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/application/parser/message/MtMessageParser.java
+Auto-merging src/main/java/com/stratio/financial/one/trade/payments/application/parser/message/Block4MtMessageParser.java
+Auto-merging queries/domain_query.json
+Auto-merging pom.xml
+CONFLICT (rename/delete): onetradepayments/ft/src/test/resources/sql/schema.sql deleted in master and renamed to ft/src/test/resources/sql/schema.sql in HEAD. Version HEAD of ft/src/test/resources/sql/schema.sql left in tree.
+CONFLICT (rename/delete): onetradepayments/ft/src/test/resources/sql/data.sql deleted in master and renamed to ft/src/test/resources/sql/data.sql in HEAD. Version HEAD of ft/src/test/resources/sql/data.sql left in tree.
+CONFLICT (rename/delete): onetradepayments/ft/src/test/resources/features/Example.feature deleted in master and renamed to ft/src/test/resources/features/Example.feature in HEAD. Version HEAD of ft/src/test/resources/features/Example.feature left in tree.
+CONFLICT (rename/delete): onetradepayments/ft/src/test/resources/data/example.json deleted in master and renamed to ft/src/test/resources/data/example.json in HEAD. Version HEAD of ft/src/test/resources/data/example.json left in tree.
+CONFLICT (rename/delete): onetradepayments/ft/src/test/java/com/stratio/financial/one/trade/payments/integration/IntegrationTest.java deleted in master and renamed to ft/src/test/java/com/stratio/financial/one/trade/payments/integration/IntegrationTest.java in HEAD. Version HEAD of ft/src/test/java/com/stratio/financial/one/trade/payments/integration/IntegrationTest.java left in tree.
+CONFLICT (rename/delete): onetradepayments/ft/src/test/java/com/stratio/financial/one/trade/payments/integration/Hooks.java deleted in master and renamed to ft/src/test/java/com/stratio/financial/one/trade/payments/integration/Hooks.java in HEAD. Version HEAD of ft/src/test/java/com/stratio/financial/one/trade/payments/integration/Hooks.java left in tree.
+CONFLICT (rename/delete): onetradepayments/ft/serenity.properties deleted in master and renamed to ft/serenity.properties in HEAD. Version HEAD of ft/serenity.properties left in tree.
+CONFLICT (rename/delete): onetradepayments/ft/pom.xml deleted in master and renamed to ft/pom.xml in HEAD. Version HEAD of ft/pom.xml left in tree.
+CONFLICT (rename/delete): onetradepayments/ft/README.adoc deleted in master and renamed to ft/README.adoc in HEAD. Version HEAD of ft/README.adoc left in tree.
+Auto-merging .gitignore
+Automatic merge failed; fix conflicts and then commit the result.
