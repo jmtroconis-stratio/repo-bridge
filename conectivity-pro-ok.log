@@ -1,0 +1,455 @@
+Started by user Tortosa Santiago,Luis
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Agent maven-jdk11-jnlp-agent-jb307 is provisioned from template Kubernetes Pod Template
+---
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  annotations: {}
+  labels:
+    cloudbees.com/master: "sgt-01-pro"
+    jenkins: "slave"
+    jenkins/jdk11: "true"
+  name: "maven-jdk11-jnlp-agent-jb307"
+spec:
+  containers:
+  - args:
+    - "jenkins-slave"
+    - "********"
+    - "maven-jdk11-jnlp-agent-jb307"
+    command:
+    - "/usr/local/bin/mvn-entrypoint.sh"
+    env:
+    - name: "JENKINS_SECRET"
+      value: "********"
+    - name: "GIT_SSL_NO_VERIFY"
+      value: "1"
+    - name: "TARGET_RUNTIME"
+      value: "alm-multi-cloud"
+    - name: "JAVA_HOME"
+      value: "/usr/lib/jvm/java-11-openjdk-amd64"
+    - name: "JAVA_OPTS"
+      value: "-Xmx1500M"
+    - name: "ATLAS_USERNAME"
+      value: "CCSW_ATLAS"
+    - name: "JENKINS_AGENT_WORKDIR"
+      value: "/home/jenkins/agent"
+    - name: "AGENT_VERSION"
+      value: "registry.global.ccc.srvb.can.paas.cloudcenter.corp/c3alm-sgt/maven-jnlp-agent:1.2.1"
+    - name: "ATLAS_PASSWORD"
+      valueFrom:
+        secretKeyRef:
+          key: "ATLAS_PASSWORD"
+          name: "sgt-secrets"
+    - name: "JENKINS_AGENT_NAME"
+      value: "maven-jdk11-jnlp-agent-jb307"
+    - name: "MVN_EXTENSION_URL"
+      value: "https://nexus.alm.gsnetcloud.corp/repository/maven-releases/com/santander/alm/almglobal-maven-lifecycle/1.3.0/almglobal-maven-lifecycle-1.3.0.jar"
+    - name: "ATLAS_ENDPOINT"
+      value: "https://atlas.isban.gs.corp/atlas/api/v1/"
+    - name: "JENKINS_NAME"
+      value: "maven-jdk11-jnlp-agent-jb307"
+    - name: "JENKINS_URL"
+      value: "http://sgt-01-pro.sgt-01-pro/sgt-01-pro/"
+    - name: "HOME"
+      value: "/home/jenkins"
+    image: "registry.global.ccc.srvb.can.paas.cloudcenter.corp/c3alm-sgt/maven-jnlp-agent:1.2.1"
+    imagePullPolicy: "IfNotPresent"
+    name: "jnlp"
+    resources:
+      limits:
+        memory: "2Gi"
+        cpu: "1000m"
+      requests:
+        memory: "500Mi"
+        cpu: "500m"
+    securityContext:
+      privileged: false
+    tty: true
+    volumeMounts:
+    - mountPath: "/var/jenkins_config"
+      name: "volume-1"
+      readOnly: false
+    - mountPath: "/home/jenkins/.m2"
+      name: "volume-0"
+      readOnly: false
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  hostNetwork: false
+  nodeSelector:
+    beta.kubernetes.io/os: "linux"
+  restartPolicy: "Never"
+  securityContext:
+    runAsUser: 1000
+  volumes:
+  - name: "volume-0"
+    persistentVolumeClaim:
+      claimName: "maven-cache"
+      readOnly: false
+  - configMap:
+      name: "jenkins-agent"
+    name: "volume-1"
+  - emptyDir:
+      medium: ""
+    name: "workspace-volume"
+
+Running on maven-jdk11-jnlp-agent-jb307 in /home/jenkins/agent/workspace/sgt-globaltradeservices/GTS Stratio/microservices/example/connection-sparta-pro-test
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Testing connection to Sparta PRO)
+[Pipeline] echo
+TEST 1
+[Pipeline] sh
++ curl -vvv -l -k https://admin-eos.onetrade.corp:9005/sso/login
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 107.104.51.62...
+* TCP_NODELAY set
+* Connected to admin-eos.onetrade.corp (107.104.51.62) port 9005 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* TLSv1.2 (OUT), TLS header, Certificate Status (22):
+} [5 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Client hello (1):
+} [512 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server hello (2):
+{ [85 bytes data]
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+{ [2579 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+{ [333 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+{ [4 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+} [70 bytes data]
+* TLSv1.2 (OUT), TLS change cipher, Client hello (1):
+} [1 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+} [16 bytes data]
+* TLSv1.2 (IN), TLS change cipher, Client hello (1):
+{ [1 bytes data]
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+{ [16 bytes data]
+* SSL connection using TLSv1.2 / ECDHE-RSA-AES256-SHA384
+* ALPN, server did not agree to a protocol
+* Server certificate:
+*  subject: C=ES; L=Madrid; O=Stratio; CN=sis.service.eos.pro.onetrade.int
+*  start date: Apr 15 15:09:02 2020 GMT
+*  expire date: Apr 14 15:09:32 2025 GMT
+*  issuer: CN=santander-pro
+*  SSL certificate verify result: self signed certificate in certificate chain (19), continuing anyway.
+} [5 bytes data]
+> GET /sso/login HTTP/1.1
+> Host: admin-eos.onetrade.corp:9005
+> User-Agent: curl/7.52.1
+> Accept: */*
+> 
+{ [5 bytes data]
+< HTTP/1.1 200 OK
+< Date: Wed, 13 May 2020 07:59:13 GMT
+< Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+< Pragma: no-cache
+< Expires: 0
+< Strict-Transport-Security: max-age=15768000 ; includeSubDomains
+< X-Content-Type-Options: nosniff
+< X-XSS-Protection: 1; mode=block
+< Content-Language: en
+< Content-Type: text/html;charset=utf-8
+< Vary: Accept-Encoding, User-Agent
+< Transfer-Encoding: chunked
+< 
+{ [15980 bytes data]
+<!DOCTYPE html><html>
+<head>
+    <title>Login - CAS &#8211; Central Authentication Service</title>
+    <meta charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="stylesheet" href="/sso/webjars/font-awesome/5.0.13/web-fonts-with-css/css/fontawesome-all.min.css"/><link type="text/css" rel="stylesheet" href="/sso/webjars/lato/0.3.0/css/lato.min.css"/><link rel="stylesheet" href="/sso/css/cas.css"/><link rel="stylesheet" href="css/theme/theme.css"/><link rel="stylesheet" href="css/theme/sanitize.css"/><link rel="stylesheet" href="css/theme/grid.css"/><link rel="icon" href="/sso/favicon.png" type="image/x-icon"/><script type="text/javascript" src="/sso/webjars/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/stratio.js"></script>
+    <script src="js/flexibility.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" href="/sso/favicon.png" type="image/x-icon"/><link rel="stylesheet" href="css/cas-login-view.css" type="text/css"/></head>
+
+<body class="login" style="visibility:hidden">
+<header class="sth-header">
+        <div class="sth-header-container">
+            <div class="sth-header-container-fix-part">
+                <div _ngcontent-c23="" class="sth-header-logo" routerlink="/" tabindex="0" ng-reflect-router-link="/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="144" height="24" viewBox="0 0 144 24">
+                        <g fill="none" fill-rule="evenodd">
+                            <path fill="#DEDEDE"
+                                d="M21.794.102l5.38 1.557c.246.07.405.308.378.564l-.012.12-.526 5.044a.527.527 0 0 1-.522.474H11.659a.529.529 0 0 1-.472-.302c-.214-.431-.656-.713-1.222-.713-.614 0-1.22.331-1.62.826a.515.515 0 0 1-.401.19H2.038a.528.528 0 0 1-.521-.585l.47-4.515a.527.527 0 0 1 .458-.47L20.75.02c.35-.044.705-.016 1.044.082zm3.281 21.606L6.725 23.98c-.35.044-.704.015-1.042-.083L.38 22.364a.529.529 0 0 1-.377-.564l.015-.143.525-5.044a.527.527 0 0 1 .523-.474h14.841c.201 0 .38.118.47.299.216.427.656.706 1.219.706.61 0 1.213-.328 1.612-.818a.516.516 0 0 1 .401-.187h5.906c.313 0 .557.274.521.588l-.503 4.514a.527.527 0 0 1-.458.467zM9.249 10.246c.61 0 1.213-.328 1.612-.818a.515.515 0 0 1 .4-.187h14.977c.312 0 .555.272.522.585l-.465 4.459a.527.527 0 0 1-.522.474h-5.767a.53.53 0 0 1-.472-.302c-.214-.432-.655-.713-1.222-.713-.614 0-1.22.33-1.62.826a.516.516 0 0 1-.402.19H1.32a.528.528 0 0 1-.522-.586l.464-4.459a.527.527 0 0 1 .522-.474H7.56c.2 0 .38.118.47.298.216.428.656.707 1.219.707z">
+                            </path>
+                            <path fill="#FFF"
+                                d="M39.593 19.137c.432.405 2.511 2.133 5.805 2.133 3.51 0 6.021-2.295 6.021-5.103 0-3.294-2.673-4.779-5.805-6.048-2.241-.918-3.429-1.863-3.429-3.402 0-.999.783-2.43 3.051-2.43 1.566 0 2.592.675 3.645 1.35.378.243.729.081.945-.27l.675-1.026a.642.642 0 0 0-.162-.918c-.27-.189-2.295-1.593-4.995-1.593-4.293 0-5.913 2.889-5.913 4.995 0 3.132 2.16 4.563 4.914 5.724 2.673 1.107 4.077 2.133 4.077 3.753 0 1.377-1.188 2.511-3.051 2.511-2.079 0-3.051-.81-4.32-1.863-.297-.243-.702-.135-.918.216l-.702 1.107c-.297.459-.081.648.162.864zm18.576 1.35c0 .27.243.513.513.513h1.782c.27 0 .513-.243.513-.513V4.638h4.401a.513.513 0 0 0 .513-.513V2.613a.513.513 0 0 0-.513-.513h-11.61a.513.513 0 0 0-.513.513v1.512c0 .27.216.513.513.513h4.401v15.849zm10.881 0V2.613c0-.27.216-.513.513-.513h7.344c3.24 0 5.886 2.565 5.886 5.778 0 2.484-1.647 4.536-3.996 5.481l3.699 6.858c.189.351 0 .783-.459.783h-2.025c-.297 0-.459-.135-.567-.351l-3.537-7.047h-4.077v6.885c0 .27-.243.513-.513.513h-1.755a.513.513 0 0 1-.513-.513zm2.835-9.207h4.806c1.755 0 3.294-1.485 3.294-3.348 0-1.755-1.539-3.213-3.294-3.213h-4.806v6.561zM84.872 21c-.405 0-.621-.351-.459-.702l8.289-18.171c.081-.162.324-.297.459-.297h.27c.135 0 .378.135.459.297l8.235 18.171c.162.351-.054.702-.459.702h-1.701c-.324 0-.513-.162-.621-.405l-1.674-3.699h-8.829l-1.647 3.699a.679.679 0 0 1-.621.405h-1.701zm5.022-6.426h6.75l-3.321-7.398h-.135l-3.294 7.398zm16.875 5.913V4.638h-4.401a.513.513 0 0 1-.513-.513V2.613c0-.27.216-.513.513-.513h11.61c.297 0 .513.243.513.513v1.512c0 .27-.216.513-.513.513h-4.401v15.849c0 .27-.243.513-.513.513h-1.782a.531.531 0 0 1-.513-.513zm10.881 0c0 .27.243.513.513.513h1.782c.27 0 .513-.243.513-.513V2.613a.531.531 0 0 0-.513-.513h-1.782a.531.531 0 0 0-.513.513v17.874zm6.561-8.91c0-5.4 4.293-9.747 9.693-9.747 5.4 0 9.72 4.347 9.72 9.747 0 5.4-4.32 9.693-9.72 9.693a9.634 9.634 0 0 1-9.693-9.693zm2.7 0c0 3.861 3.159 7.074 6.993 7.074 3.861 0 7.02-3.213 7.02-7.074 0-3.834-3.159-7.128-7.02-7.128-3.834 0-6.993 3.294-6.993 7.128z">
+                            </path>
+                        </g>
+                    </svg></div>
+                <st-header-menu class="sth-header-menu-component" id="st-header-menu">
+                    <nav class="sth-header-menu" id="st-header-menu-list">
+                    </nav>
+                </st-header-menu>
+            </div>
+            <div class="sth-header-user-menu-container"></div>
+        </div>
+    </header>
+
+<main role="main" class="container mt-3 mb-3">
+    <div id="content" class="row">
+            <div class="content__login">
+                <div class="card">
+
+                <div class="card-body">
+                    <form method="post" id="fm1" action="login">
+                        <span class="card-body__title">Login</span>
+
+
+                        <section class="form-group">
+                            <label class="tenant st-input__label st-label" name="name" st-label="" id="tenant-label"><span title=""> Tenant
+                                    </span></label>
+                            <input
+                                    class="optional tenant st-form-field st-input"
+                                    id="tenant"
+                                    name="tenant"
+                                    size="25"
+                                    tabindex="1"
+                                    type="text"
+                                    accesskey="t"
+                                    autocomplete="on"
+                                    label="Tenant" value=""></input>
+                        </section>
+
+                        <section class="form-group">
+                            <div>
+                                <label class="st-input__label st-label" name="name" st-label="" id="username-label"><span title=""> Username
+                                            </span></label>
+                                <input class="required st-form-field st-input"
+                                       id="username"
+                                       name="username"
+                                       size="25"
+                                       tabindex="2"
+                                       type="text"
+                                       accesskey="u"
+                                       label="Username"
+                                       autocomplete="off" value=""></input>
+                            </div>
+                        </section>
+
+                        <section class="form-group">
+                            <div>
+                                <label class="st-input__label st-label" name="name" st-label="" id="password-label"><span title=""> Password
+                                            </span></label>
+                                <input class="required st-form-field st-input"
+                                       field-type="password"
+                                       type="password"
+                                       id="password"
+                                       name="password"
+                                       size="25"
+                                       tabindex="3"
+                                       accesskey="p"
+                                       label="Password"
+                                       autocomplete="off" value=""></input>
+                                <span id="capslock-on" style="display:none;">
+                                    <p>
+                                        <i class="fa fa-exclamation-circle"></i>
+                                        <span>CAPSLOCK key is turned on!</span>
+                                    </p>
+                                </span>
+                            </div>
+                        </section>
+
+                        <input type="hidden" name="execution" value="9d131f7c-92ba-483a-88af-b764da0edb9c_ZXlKaGJHY2lPaUpJVXpVeE1pSjkuL3ZaaXhKZ1hsTVJiUzVnRmVRV1ZaSU5kVFBrd0p6Q054RVFZLzNNd0JvbWQxT0R5SlhpRUg0SkV5akc2SkJiN3VXQVRvYm5ROERGVVdqWjJjejJYZFdGWHozcEtTemI5WE8ySVI2d2wyNVhrWnhjdmtDWXRIcS8xNXpYYTVsVERNbGxHR0hlcnZLMzQxYWNXZFNJN3dZYTZyMURRa0MrTHRPeG9TNlJNRmZhQllXVmpsOEswdDBuRG5EQkMzZ0hXRVAxbGN3QWxGL1kzKysxTnE3NXIwbmNBUDdPQWdiaTRhOEZHUnFlTTB4UWkyU2pOMjhsRUNKNHd1UzRwbmdqeTY2QStVWFJGOGxNL250cm1RUzh4THZaaGZ5NzJCK2ZMQXBqbG91ajQwdEZXdmlyTXpZRXlHVjY3Qzd6V3grWG5sYXVnd29rNHJZMFhoMjFVTEpRdU0xYUdDYlh4Z2FPeDVVUmd0UEE3TGw1aWhVcnZTOFp1a2dndGVLS3hnUGRpdndJd2RkYWJQdFk2SnMyNjN0VnVYd0xqaUpHTWFBS2lGUmpBZnhLcjFZTkpBczlySW5MbmpSRXZ2Qm5EYlIvaUJ1WkFLUFVzbFZRSllrSHJtR1BYbWk2QldjV2IwYUNHSzYxTGw1NWN5NTZRdUlWRzF4SVBsZkt0Q0ZWUm5qdDV1RHJHeElSVUI3dEZGVmYwcWdCT0NMWk1BOG9qSlNLNHkxYURPdFRhR3ppUTZHcFROMmdKTm1DOVpISjBES3hoVk95ajhXVC90WC9za0h3WEV1SWVKZEVTYmdMNTRhUTBSaUtNaWRLRUtSVUVSclp5a1VSODdXcis1Qm1TL3FISXNoR0lPdVZ3S1pmZjF6N21keGxVZG9Hem5ZRUJUNGl0ZUt1aGhUcmZMblFrUHlOMkpXYU5KVUN3SStMZndGVXVNUnBGOUxoMDdkNDVaZk1aMExtVC9lU3phVXFmQ1p5WHA5TUZPRGtNa1I0a0ZEb2QyZUVzZnBZSDA4MjdheUY4b0c2QWNFaWVyZGdLM1VsbUhkQTdBdnF1OXB5OFdhb2hadk1CUGlaM3FyV3Q0K0RUR2RMZGJQdEE3TDJ6MnZod0RLeVlsOEF2MjhvZk1USER5cTJtSERBYWN1cE8rWE0zTVhyT3g2NXZicERoOS9MZk80UTBsM3BYN1hlRVoxVklXUy9Vd2pVdkc0SjdoZGpIdE1QaklEMEs1ODNubXQ2VmJSbjVzM1pnVGZqSEd1SUErZ2d4dWN2Z2Y5MnlvREdHMFcrM1NnQ3cxSHByWnlTZFRERjFzVWJXUUFDbGs0aXZEWStEaVdka1FXTDBqZVhHQzllZjNaK2J6UzdYWWh4VUVOZ2ZHbmlEN2U5VVZpenJOSTN6b0ZKUWovek0xK285NkUyS0YrRUZGR0U9Lkw3OGVIclFSdTZlVy1NdGxpWGV3RFN1TXlWWmFfSFZoT2UzaVZJQnVfNWhnSy1SYWpLc0xaRjNHbU8xcUx2LW1jRG9mNGJYYzFZcHRPbm9RRzRfalVR" /><input type="hidden" name="_eventId" value="submit" /><input type="hidden" name="geolocation" /><input type="hidden" name="lt" value="f777f48f3242e2c01ba13fce2208fc6a" /><input class="button button-primary large"
+                               name="submit"
+                               accesskey="l"
+                               tabindex="6"
+                               type="submit"
+                               value="Login"
+                        /><div class="card-body__subtitle">
+
+                                        <br/><span class="rights">© Stratio Big Data Inc. All Rights Reserved.</span>
+                                        <a class="stratio-link" href="https://www.stratio.com/">stratio.com</a>
+            
+            
+                                        <script>
+                                    
+                                           var autoRedirect =$(".stratio-link").attr('bool');
+                                           if ( autoRedirect == "true" ) {
+                                               redirect($(".stratio-link").attr('href'));
+                                           }else{
+                                               document.getElementsByTagName("body")[0].style.visibility='visible';
+                                           }
+                                        </script>
+            
+                        </div>
+                    </form>
+
+                    <script type="text/javascript">
+                        var i = "One moment please...";
+                        var tenantStorage = window.localStorage.getItem('tenant-value');
+
+                        $( document ).ready(function() {
+                            if (tenantStorage != null && tenantStorage != "") {
+                                $('#tenant').val(tenantStorage);
+                            }
+
+                            $("#fm1").submit(function () {
+                                if (($('#tenant').val() != "") || ($('#tenant').val() != undefined)) {
+                                    window.localStorage.setItem('tenant-value', $('#tenant').val());
+                                }
+
+                                $(":submit").attr("disabled", true);
+                                $(":submit").attr("value", i);
+                                console.log(i);
+                                return true;
+                            });
+                        });
+                    </script>
+
+
+                </div>
+            </div>
+            </div>
+            <div class="content__info">
+                <div class="content__info-block">
+                    <div class="content__info__logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="170"
+                            height="36" viewBox="0 0 170 36">
+                            <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAAAkCAMAAAAuElEYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACqVBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AAAA9qjOrAAAA4XRSTlMABBozTWd/g2IsAxQ2WXqcvt/88K4hBylKbI6w0fPaky4RPF6AocPlrw3vmDBOWnY3IBgmKAtoDwg+amU4bbHoDOzIvEQ10wEcl3wjm+uMiy/nJ9AQkKdFoAL58mOq+wbbgoG7/uDi9IQftxLY7nKt6srO9m4XXVadQCpwpaaJwL14n7MdOZIO3T9JpPcVTGDhfjtb9UtriFd56dJYUzHLE2T6uUYkQR4KGc9CUFHHuEfm/YfNQ7YFlKKK1Bv4Fty6wSJfK9YJxiVmdTKohZVvrDSRwo13LZ6GOnPMaUi0o32NpIWKAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAABZ1JREFUWMPNmPlbFVUYxw+bCRTLJUFRY7lXM7ksGXgJLGXRiwSogAKRYqyigiihjFaEaFBp4oalmIGRaJphhLhWlkTZoi2W7e9/0ntmPXOZGefp1oPfX+Y975z3nM895z3LXEJ05eHp5e0z4b6Jvn7knpX//Q8EBAYFW0BUyIM+k8abyUWhYZOnhE+dNh009FBE5Hjj8YqKttpmzHwYDDVrvCmpHpkNJhQz3phUdjOkEDDemFSxplDj1EGecfE2nwRhc3jUzmoOeh6TColJY7qbmyAaYaowByFJQrCo5MdTbBNS56n2nydMoUazIZOeFJzzJyzAUpqqYjqmlFKyZGSqSRfCIidvZKnbX0xINh8s6KkccXnn5jH4S0yhZjHdLVXgluUTEqKqWEBIocqx3MmirgAoEuZC3X4xITY+mKok4GnlTekzcvBKM6SrmIkoW42OjGfLKyoBKiMJCapCzUdfNTUCBdSaEJQwMmsY0lrcrtfy1rr1tHYdDjx9VtUzqGUb+LiGjZvqeCNC+rHpMk/jc03WRm3UYKa7zUi4hR+Y5srlkpPDSoWiTVE5wUpBWstWJTaPNsaUtwFUSbaM+jzNnMVL6fDOe4EGvCglQIuoinlY8n6pRUutDOp2gDbR3OFnjErIThzGl+XQ9lLac44xaipW6VgqeV/JxeKr5N+pDadkjFMPlbwGsEiuVY+pBLBrtxFqIc56FbM0wrDc4cGbr+8Rxf+QWuseLe1mqGYATFMtFUPUuQBpku3RCdCKx+JeI9R4jN7HNr0FHfup4SXn4wFfQg6WaudqFxNKJ+iQK6suKm5BnZL9BsB0x5sAh0MNUI8AbFC3nS4uxW6FZ/aSNr0d4CgTueAwOireModacoS5Pxyjefs2rtyJ+qhNY1OzB1e8UxzvuyuBDc3spa7j7zjvjuoMR9tb9Efj1tFHSAxIx4AW6ru4+kPVqCewjX58RphCPakeQuEaduo9fdTs06gzU95H86xUZ5awdSSi7wNdVMzMAZfk8jsHgAcvmWrqBChRBzs+rOH9Ocl6qIoGo0R3Hx4ZH1FjCKdEFxUTstoF1blKaHvQDGowcVVUdhp9cfb8XVB7h+Uby7C0bRWh31cPFV/2unwjnRQToEFnHDdcsCilmWSsksrxx8qXQ1fUGJvNtgZbuCjXX3cAQDjOnZcAAvVQL7Pbh6D9SI/Tel6btM6LkKNK8QLRUiZeKhr8tFHt1CjGy4a/VDsAF1XrNl6YAVeu6qCSjwG2q/v5BOBT+vTW2vGt1+iraKn42Q5NVEKX9+cGqH04rOGis2xAPRg2PdRy3AJ8VSOCtVOJmzqtTJYmKh3WXScEp9Vl3hqSdVCbMFGuO5ROsnC7GRhBw76xQKVN/O1kLd3gE76QnIOjLKBfsbSDY0eQb4Saj4u+WXDiUTAkz9qXmOY9OqjkK7oPyt/zkR1Y7KZWq3auLpvclMJ8Zt9gUbH5oT4eBI+tTqcRKvkaZzNRmsVIpQ28511y6qCWYCpD4ze11A4bpmtXuIp9a2avAn8WdRM6Kiuyv2vGmQIrMUTdisN6kxprAYKYNm6BcAxo3lf7g/hOV2e0dPLGCmHptpkhbVRl6GiB8uZ7YoxKhxVuITI+YtlGfhCOAU1UUvbjOaWLKz+JE3fKDOp69Wry6AoW/NWbZd8+LLaLdjvat0X7Nto/E3II/6FRnXjewJ/WXXgXlVx7AY5Jtn2l+HVVE3hN8uWaQT1OXOT06volL57* Curl_http_done: called premature == 0
+100 18680    0 18680    0     0  51983      0 --:--:-- --:--:-- --:--:-- 52033
+* Connection #0 to host admin-eos.onetrade.corp left intact
+zYDzRnJcyvdwd+Spj57jLhFzlOE91Ewu5nVhnhOPyJY+D45g/xxyxreF5vxb1y44SU6maQ+4BjZhC7XK/I/fVbsxY99vNi7//Mep0vyP35axvsWggNl7/c7j+jN3hfgf/qQq7/0qTEC3BQc3ZcXfmuN/q/6US3541f/ccvOF5D/+Z/g9YBtmK45kIawAAAABJRU5ErkJggg=="
+                                width="170" height="36" /></svg>
+                    </div>
+                    <div class="content__info__message-one">Hello!</div>
+                    <div class="content__info__message-two">Welcome to the core of your data</div>
+                    <div class="content__info__message-three">Log in to access your workspace</div>
+                </div>
+                
+            </div>
+        </div>
+</main>
+
+<footer class="footer" role="contentinfo">
+        <div class="container">
+            <span id="copyright">Copyright &copy; 2019 Stratio Big Data Inc.</span>
+            <span>Stratio Big Data Inc. All Rights Reserved
+                <a href="http://www.stratio.com/" target="_blank">stratio.com</a>
+            </span>
+        </div>
+    </footer>
+
+<script type="text/javascript" src="/sso/webjars/zxcvbn/4.3.0/zxcvbn.js"></script>
+<script type="text/javascript" src="/sso/webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/sso/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
+<script src="/sso/webjars/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+
+<script src="/sso/webjars/headjs/1.0.3/head.min.js"></script>
+<script src="/sso/webjars/store.js/1.3.17/store.min.js"></script>
+<script type="text/javascript" src="/sso/js/cas.js"></script>
+
+<script>
+head.ready(document, function () {
+    if (!window.jQuery) {
+    	var jqueryUrl = "\/sso\/webjars\/jquery\/3.3.1\/jquery.min.js";
+        head.load(jqueryUrl, loadjQueryUI);
+    } else {
+        notifyResourcesAreLoaded(resourceLoadedSuccessfully);
+    }
+});
+
+function loadjQueryUI() {
+	var jqueryUrl = "\/sso\/webjars\/jquery-ui\/1.12.1\/jquery-ui.min.js";
+	head.load(jqueryUrl, loadjQueryCookies);
+}
+
+function loadjQueryCookies() {
+	var jqueryUrl = "\/sso\/webjars\/jquery-cookie\/1.4.1-1\/jquery.cookie.js";
+	head.load(jqueryUrl, notifyResourcesAreLoaded(resourceLoadedSuccessfully));
+}
+
+function notifyResourcesAreLoaded(callback) {
+    if (typeof callback === "function") {
+        callback();
+    }
+}
+</script>
+
+</body>
+</html>
+[Pipeline] echo
+TEST 2
+[Pipeline] sh
++ curl -vvv -l -k https://gts-sparta.onetrade.corp/gts-sparta/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 107.104.51.61...
+* TCP_NODELAY set
+* Connected to gts-sparta.onetrade.corp (107.104.51.61) port 443 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* TLSv1.2 (OUT), TLS header, Certificate Status (22):
+} [5 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Client hello (1):
+} [512 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server hello (2):
+{ [93 bytes data]
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+{ [2406 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+{ [333 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+{ [4 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+} [70 bytes data]
+* TLSv1.2 (OUT), TLS change cipher, Client hello (1):
+} [1 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+} [16 bytes data]
+* TLSv1.2 (IN), TLS change cipher, Client hello (1):
+{ [1 bytes data]
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+{ [16 bytes data]
+* SSL connection using TLSv1.2 / ECDHE-RSA-AES128-GCM-SHA256
+* ALPN, server did not agree to a protocol
+* Server certificate:
+*  subject: CN=gts-sparta
+*  start date: Apr 16 15:04:12 2020 GMT
+*  expire date: Apr 15 15:04:42 2025 GMT
+*  issuer: CN=santander-pro
+*  SSL certificate verify result: self signed certificate in certificate chain (19), continuing anyway.
+} [5 bytes data]
+> GET /gts-sparta/ HTTP/1.1
+> Host: gts-sparta.onetrade.corp
+> User-Agent: curl/7.52.1
+> Accept: */*
+> 
+{ [5 bytes data]
+< HTTP/1.1 302 Found
+< server: spray-can/1.3.4
+< date: Wed, 13 May 2020 07:59:13 GMT
+< access-control-allow-origin: *
+< location: https://admin-eos.onetrade.corp:9005/sso/oauth2.0/authorize?redirect_uri=https://gts-sparta.onetrade.corp/gts-sparta/login&client_id=gts-sparta.sparta.gts.marathon-oauth-id
+< content-type: text/html
+< content-length: 245
+< set-cookie: mesosphere_server_id=09fe35310e; path=/
+< 
+{ [245 bytes data]
+* Curl_http_done: called premature == 0
+100   245  100   245    0     0    842      0 --:--:-- --:--:-- --:--:--   844
+* Connection #0 to host gts-sparta.onetrade.corp left intact
+The requested resource temporarily resides under <a href="https://admin-eos.onetrade.corp:9005/sso/oauth2.0/authorize?redirect_uri=https://gts-sparta.onetrade.corp/gts-sparta/login&client_id=gts-sparta.sparta.gts.marathon-oauth-id">this URI</a>.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
