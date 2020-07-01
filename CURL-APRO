@@ -1,0 +1,23 @@
+CURL A EOS PRO
+
++ curl -vvv -l -k https://admin-eos.onetrade.corp
+* Rebuilt URL to: https://admin-eos.onetrade.corp/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 107.104.51.62...
+* TCP_NODELAY set
+  0     0    0     0    0     0      0      0 --:--:--  0:02:06 --:--:--     0* connect to 107.104.51.62 port 443 failed: Connection timed out
+* Failed to connect to admin-eos.onetrade.corp port 443: Connection timed out
+
+
+CURL A SPARTA PRO
+
++ curl -vvv -l -k https://gts-sparta.onetrade.corp/gts-sparta/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 107.104.51.61...
+* TCP_NODELAY set
+  0     0    0     0    0     0      0      0 --:--:--  0:02:06 --:--:--     0* connect to 107.104.51.61 port 443 failed: Connection timed out
+* Failed to connect to gts-sparta.onetrade.corp port 443: Connection timed out
