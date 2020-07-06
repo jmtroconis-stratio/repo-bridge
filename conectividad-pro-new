@@ -1,0 +1,43 @@
+-
+Recategorizamos a soporte
+
+-
+ALEJANDRO SANZ CARRASCAL
+Observaciones adicionales•04/07/2020 00:41:07
+Buenas,
+
+La red que usa CloudBees es la siguiente: (ORIGEN)
+
+10.202.105.0/24
+180.156.105.0/24
+
+Desde ahí se pretende llegar a: (DESTINO)
+
+107.104.51.61:443
+107.104.51.62:443
+107.104.51.62:9005
+
+El usuario dice que no llega de origen a destino. Nosotros hemos probado desde 10.202.105.15 y efectivamente no llegamos tampoco al destino.
+
+SDN ¿Podéis revisar? Las reglas de fw solicitadas en su día se compilaron en esta petición RITM001347809. Ver imagen adjunta.
+
+Saludos,
+Alejandro Sanz.
+
+
+-
+SGT_IN_CO_CCC Cloud SDNeraSGT_IN_MW_CCC ALM Ops
+
+ANTONIO ALVAREZ FERNANDEZ
+Cambios de campo•06/07/2020 08:20:27
+Código de resoluciónSolucionado (de forma permanente)
+Notas de resoluciónBuenos días,
+
+He revisado las reglas de FW y observamos que hay tráfico dropeado desde 10.202.105.0/24 hasta 107.104.51.0/24
+Adjunto captura.
+
+Por favor, abridnos petición de reglas para poder crearlas.
+
+Muchas gracias,
+
+Un saludo.
