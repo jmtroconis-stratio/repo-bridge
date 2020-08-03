@@ -1,0 +1,22 @@
+@Library('jenkinsfile-pipeline-sl-governance@feature/initial-version-curl') _
+
+def defaults = [
+                'all' : true,
+                'catalogKeyAction' : false,
+                'qualityEnvironmentAction' : false,
+                'glossaryBusinessAssetAction' : false,
+                'glossaryKeyBusinessAssetAction' : false,
+                'catalogDataAssetAction' : false,
+                'catalogKeyDataAssetAction' : false,
+                'glossaryBusinessAssetDataAssetAction' : false,
+                'qualityQualityAction' : false,
+                'qualityKeyQualityAction' : false,
+                'qualityBusinessAssetQualityAction' : false,
+                'communities' : 'Persons',
+                'schemas' : 'gts-hdfs.gts%3A',
+                'qrNames' : '_%25'
+               ]
+
+governancePromotionPipeline defaults: defaults,
+                            promotionType: 'RC',
+                            jslaveGovernance: 'jenkins-slave-governance-test'
