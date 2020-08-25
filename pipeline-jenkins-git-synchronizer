@@ -1,14 +1,14 @@
 import groovy.json.JsonSlurper
 
 def authCookie
-def dcosUrl = "https://admin.sgcto-int.stratio.com"
+def dcosUrl = "https://admin-eos.dev.onetrade.corp"
 def jobId = "test-sync-jenkins"
 def runId
 
-node('jenkins-slave-mvn-jdk11') {
+node('maven') {
     stage ("Login to DC/OS") {
         withCredentials([[$class : 'UsernamePasswordMultiBinding',
-                          credentialsId   : "jenkinsDcos_dev",
+                          credentialsId   : "cert-cctCredentials-id",
                           usernameVariable: 'CICDCD_SSO_USER_ID',
                           passwordVariable: 'CICDCD_SSO_USER_PASSWORD']]) {
                               
@@ -25,9 +25,8 @@ node('jenkins-slave-mvn-jdk11') {
     }
     
     stage ("Run DC/OS job") {
-        def jobCommand = "curl -k -s -X POST --cookie '$authCookie' $dcosUrl/service/metronome/v1/jobs/${jobId}/runs"
+        def jobCommand = "#!/usr/bin/env bash\n# set -x\ncurl -k -s -X POST --cookie '$authCookie' $dcosUrl/service/metronome/v1/jobs/${jobId}/runs"
         def jobResponse = sh script: "$jobCommand", returnStdout: true
-
         def jobResponseJson = new JsonSlurper().parseText(jobResponse)
         runId = jobResponseJson.id
         println "[INFO] Run id: $runId"
@@ -41,8 +40,7 @@ node('jenkins-slave-mvn-jdk11') {
         def jobFinished = false
 
         while (!jobFinished){
-        
-            def jobPollCommand = "curl -k -s --cookie '$authCookie' $dcosUrl/service/metronome/v1/jobs/${jobId}?embed=history"
+            def jobPollCommand = "#!/usr/bin/env bash\n# set -x\ncurl -k -s --cookie '$authCookie' $dcosUrl/service/metronome/v1/jobs/${jobId}?embed=history"
             def jobStatusResult = sh script: "$jobPollCommand", returnStdout: true
             def jobStatusResponseJson = readJSON text: "$jobStatusResult"
 
