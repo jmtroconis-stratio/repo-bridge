@@ -5,34 +5,48 @@ def dcosUrl = "https://admin-eos.dev.onetrade.corp"
 def jobId = "test-sync-jenkins"
 def runId
 
+def notifyError(message){
+    currentBuild.result = 'FAILURE'
+	step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'jmtroconis@stratio.com,josemtm87@gmail.com'])
+    error "$message"
+}
+
 node('maven') {
     stage ("Login to DC/OS") {
-        withCredentials([[$class : 'UsernamePasswordMultiBinding',
-                          credentialsId   : "cert-cctCredentials-id",
-                          usernameVariable: 'CICDCD_SSO_USER_ID',
-                          passwordVariable: 'CICDCD_SSO_USER_PASSWORD']]) {
-                              
-            withEnv(["CICDCD_SSO_URL=${dcosUrl}/login"]) {
-                configFileProvider([configFile(fileId: 'sso_login', variable: 'SSO_LOGIN_FILE')]) {
-                    authCookie = sh script: "bash '${SSO_LOGIN_FILE}'", returnStdout: true
+        try {
+            withCredentials([[$class : 'UsernamePasswordMultiBinding',
+                              credentialsId   : "cert-cctCredentials-id",
+                              usernameVariable: 'CICDCD_SSO_USER_ID',
+                              passwordVariable: 'CICDCD_SSO_USER_PASSWORD']]) {
+                                  
+                withEnv(["CICDCD_SSO_URL=${dcosUrl}/login"]) {
+                    configFileProvider([configFile(fileId: 'sso_login', variable: 'SSO_LOGIN_FILE')]) {
+                        authCookie = sh script: "bash '${SSO_LOGIN_FILE}'", returnStdout: true
+                    }
                 }
             }
+        } catch (Exception e){
+            notifyError("[ERROR] Could not authenticate to $dcosUrl. Failed auth: ${e}")
         }
-        
+
         if (!authCookie){
-            error "[ERROR] Could not authenticate to $dcosUrl"
+            notifyError("[ERROR] Could not authenticate to $dcosUrl. No auth cookie.")
         }
     }
     
     stage ("Run DC/OS job") {
-        def jobCommand = "#!/usr/bin/env bash\n# set -x\ncurl -k -s -X POST --cookie '$authCookie' $dcosUrl/service/metronome/v1/jobs/${jobId}/runs"
-        def jobResponse = sh script: "$jobCommand", returnStdout: true
-        def jobResponseJson = new JsonSlurper().parseText(jobResponse)
-        runId = jobResponseJson.id
-        println "[INFO] Run id: $runId"
+        try {
+            def jobCommand = "#!/usr/bin/env bash\n# set -x\ncurl -k -s -X POST --cookie '$authCookie' $dcosUrl/service/metronome/v1/jobs/${jobId}/runs"
+            def jobResponse = sh script: "$jobCommand", returnStdout: true
+            def jobResponseJson = new JsonSlurper().parseText(jobResponse)
+            runId = jobResponseJson.id
+            println "[INFO] Run id: $runId"
+        } catch (Exception e){
+            notifyError("[ERROR] Could not be executed the DC/OS job $jobId")
+        }
         
         if (!runId){
-            error "[ERROR] Could not be started the DC/OS job $jobId"
+            notifyError("[ERROR] DC/OS job $jobId didn't start correctly. No run id.")
         }
     }
     
@@ -45,7 +59,7 @@ node('maven') {
             def jobStatusResponseJson = readJSON text: "$jobStatusResult"
 
             if (jobStatusResponseJson.history.failedFinishedRuns.any{ it.id == "$runId" }){
-                error "[ERROR] DC/OS job finished with failed status"
+                notifyError("[ERROR] DC/OS job finished with failed status")
             } else if (jobStatusResponseJson.history.successfulFinishedRuns.any{ it.id == "$runId" }){
                 jobFinished = true
                 println "[INFO] DC/OS job finished with successful status"
