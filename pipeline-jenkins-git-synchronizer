@@ -2,12 +2,12 @@ import groovy.json.JsonSlurper
 
 def authCookie
 def dcosUrl = "https://admin-eos.dev.onetrade.corp"
-def jobId = "test-sync-jenkins"
+def jobId = "git-synchronizer"
 def runId
 
 def notifyError(message){
     currentBuild.result = 'FAILURE'
-	step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'jmtroconis@stratio.com,josemtm87@gmail.com'])
+	step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'jmtroconis@stratio.com,carlosagudo@stratio.com'])
     error "$message"
 }
 
@@ -40,7 +40,7 @@ node('maven') {
             def jobResponse = sh script: "$jobCommand", returnStdout: true
             def jobResponseJson = new JsonSlurper().parseText(jobResponse)
             runId = jobResponseJson.id
-            println "[INFO] Run id: $runId"
+            println "[INFO] Running DC/OS job with jobId '$jobId' and runId '$runId'"
         } catch (Exception e){
             notifyError("[ERROR] Could not be executed the DC/OS job $jobId")
         }
