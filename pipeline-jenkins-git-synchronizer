@@ -7,7 +7,7 @@ def runId
 
 def notifyError(message){
     currentBuild.result = 'FAILURE'
-	step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'jmtroconis@stratio.com,carlosagudo@stratio.com'])
+	step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'jmtroconis@stratio.com,carlosagudo@stratio.com,fs-architecture@stratio.com'])
     error "$message"
 }
 
