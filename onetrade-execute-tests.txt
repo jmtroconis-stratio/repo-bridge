@@ -1,0 +1,229 @@
+#!groovy
+library 'eos-pipeline-library'
+library 'global-alm-pipeline-library'
+almStratioEosInit()
+
+def dplyaml = '''environments:
+  - name: CERT
+    type: eos
+    properties:
+        cctUrl: https://admin-eos.dev.onetrade.corp
+        cctDeploymentCredentialsId: cert-cctCredentials-id
+        domain: test
+        tenant: gts
+        serviceId: onetrade-example
+        serviceDescriptorName: microservice
+        serviceModel: cicdcd-secret
+        serviceModelVersion: 0.7.7
+        deploymentTimeOutInSecs: 300          
+        ARTIFACT_URL: ${ARTIFACT_NEXUS_URL}
+        deploymentDescriptor: |
+                                {
+                                    "general": {
+                                      "serviceId": "onetrade-example",
+                                      "CPUs": 0.5,
+                                      "MEM": 512,
+                                      "INSTANCES": 1,
+                                      "DISK": 0,
+                                      "GPUs": 0,
+                                      "networkName": "gts-core"
+                                    },
+                                    "settings": {
+                                      "highAvailability": {
+                                        "upgradeStrategyHA": true
+                                      }
+                                    },
+                                    "environment": {
+                                      "postgresUrl": "jdbc:postgresql://gts-poolpgdata.gts.marathon.mesos:5432/gts",
+                                      "vaultHost": "vault.service.eos.dev.onetrade.int",
+                                      "configServerUri": "http://config-server.infrastructure.marathon.mesos:8080",
+                                      "springCloudConfigEnabled": false,
+                                      "asTriggerMode": "all",
+                                      "asMinInstances": 1,
+                                      "asCoolDownFactor": 3,
+                                      "asMicroservice": true,
+                                      "asMinMemPercent": 60,
+                                      "asMaxInstances": 1,
+                                      "asMaxCpuTime": 80,
+                                      "asMetricsPortName": "metrics",
+                                      "asMaxMemPercent": 85,
+                                      "asMinCpuTime": 60,
+                                      "asAutoscaleMultiplier": 1.5,
+                                      "asTriggerNumber": 2,
+                                      "configServerName": "config-server",
+                                      "vaultPort": 8200,
+                                      "springProfilesActive": "dev,info,default",
+                                      "deploymentEnv": "dev",
+                                      "approle": "{secret=role}",
+                                      "springKafkaBrokers": "kafka-0-broker.gts-kafka.mesos:9092,kafka-1-broker.gts-kafka.mesos:9092,kafka-2-broker.gts-kafka.mesos:9092",
+                                      "NEXUS_ARTIFACT_URL": "null",
+                                      "RESOURCES_BASE_PATH": "BOOT-INF/classes/ci"
+                                    }
+                                }
+  - name: PRE
+    type: eos
+    properties:
+        cctUrl: https://admin-eos.pre.onetrade.corp
+        cctDeploymentCredentialsId: pre-cctCredentials-id
+        domain: test
+        tenant: gts
+        serviceId: onetrade-example
+        serviceDescriptorName: microservice
+        serviceModel: cicdcd-secret
+        serviceModelVersion: 0.7.7
+        deploymentTimeOutInSecs: 300          
+        ARTIFACT_URL: ${ARTIFACT_NEXUS_URL}
+        deploymentDescriptor: |
+                                {
+                                    "general": {
+                                      "serviceId": "onetrade-example",
+                                      "CPUs": 0.5,
+                                      "MEM": 512,
+                                      "INSTANCES": 1,
+                                      "DISK": 0,
+                                      "GPUs": 0,
+                                      "networkName": "gts-core"
+                                    },
+                                    "settings": {
+                                      "highAvailability": {
+                                        "upgradeStrategyHA": true
+                                      }
+                                    },
+                                    "environment": {
+                                      "vaultHost": "vault.service.eos.pre.onetrade.int",
+                                      "configServerUri": "http://config-server.infrastructure.marathon.mesos:8080",
+                                      "springCloudConfigEnabled": false,
+                                      "asTriggerMode": "all",
+                                      "asMinInstances": 1,
+                                      "asCoolDownFactor": 3,
+                                      "asMicroservice": true,
+                                      "asMinMemPercent": 60,
+                                      "asMaxInstances": 1,
+                                      "asMaxCpuTime": 80,
+                                      "asMetricsPortName": "metrics",
+                                      "asMaxMemPercent": 85,
+                                      "asMinCpuTime": 60,
+                                      "asAutoscaleMultiplier": 1.5,
+                                      "asTriggerNumber": 2,
+                                      "configServerName": "config-server",
+                                      "vaultPort": 8200,
+                                      "springProfilesActive": "pre,info,default",
+                                      "deploymentEnv": "pre",
+                                      "approle": "{secret=role}",
+                                      "NEXUS_ARTIFACT_URL": "null",
+                                      "RESOURCES_BASE_PATH": "BOOT-INF/classes/ci"
+                                    }
+                                }
+  - name: PRO
+    type: eos
+    properties:
+        cctUrl: https://admin-eos.pro.onetrade.corp
+        cctDeploymentCredentialsId: pro-cctCredentials-id
+        domain: test
+        tenant: gts
+        serviceId: onetrade-example
+        serviceDescriptorName: microservice
+        serviceModel: cicdcd-secret
+        serviceModelVersion: 0.7.7
+        deploymentTimeOutInSecs: 300          
+        ARTIFACT_URL: ${ARTIFACT_NEXUS_URL}
+        deploymentDescriptor: |
+                                {
+                                    "general": {
+                                      "serviceId": "onetrade-example",
+                                      "CPUs": 0.5,
+                                      "MEM": 512,
+                                      "INSTANCES": 1,
+                                      "DISK": 0,
+                                      "GPUs": 0,
+                                      "networkName": "gts-core"
+                                    },
+                                    "settings": {
+                                      "highAvailability": {
+                                        "upgradeStrategyHA": true
+                                      }
+                                    },
+                                    "environment": {
+                                      "vaultHost": "",
+                                      "configServerUri": "http://config-server.infrastructure.marathon.mesos:8080",
+                                      "springCloudConfigEnabled": false,
+                                      "asTriggerMode": "all",
+                                      "asMinInstances": 1,
+                                      "asCoolDownFactor": 3,
+                                      "asMicroservice": true,
+                                      "asMinMemPercent": 60,
+                                      "asMaxInstances": 1,
+                                      "asMaxCpuTime": 80,
+                                      "asMetricsPortName": "metrics",
+                                      "asMaxMemPercent": 85,
+                                      "asMinCpuTime": 60,
+                                      "asAutoscaleMultiplier": 1.5,
+                                      "asTriggerNumber": 2,
+                                      "configServerName": "config-server",
+                                      "vaultPort": 8200,
+                                      "springProfilesActive": "pro,info,default",
+                                      "deploymentEnv": "pro",
+                                      "approle": "{secret=role}",
+                                      "NEXUS_ARTIFACT_URL": "null",
+                                      "RESOURCES_BASE_PATH": "BOOT-INF/classes/ci"
+                                    }
+                                }
+'''
+
+mavenDevOpsPipeline (
+		integrationBranch: 'develop',
+		agent: 'jdk11',
+		deployYml: dplyaml,
+/*
+    sonar: [ sonarInstanceName: 'GLOBAL',
+             sonarProperties: [
+                                "sonar.projectKey": 'com:stratio:cicdcd:onetrade-example'
+                              ]
+            ],
+*/
+
+/*
+    kiuwan: [ kiuwanProperties: [
+                                  'softwareName':'sgt:sgt:architecturelifecycle:test-alm-java',
+                                  'change-request': 'TCU-234'
+                                ]
+            ],
+    kiuwanInsight: [softwareName: 'sgt:sgt:architecturelifecycle:test-alm-java_composition'],
+*/
+		deploy_cert: [
+				environment: 'CERT',
+				type: 'eos'
+		],
+
+		test_cert: [
+			agent: 'maven',
+			body: {
+				echo "Executing POST TEST..."
+
+				dir ('test-project') {
+					git branch: 'master',
+							url: 'git@github.alm.europe.cloudcenter.corp:X370396/str-project-demo.git',
+							credentialsId: 'sparta-test-project-credentials-test'
+
+					try {
+						almMaven(goal: "clean verify -Dcucumber.options='--tags @SmokyTest --tags ~@Ignore' -Denv=SANDEV")
+					} finally {
+						publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target/site/serenity', reportFiles: 'index.html', reportName: 'Tests Report', reportTitles: ''])
+					}
+				}
+
+			}
+		],
+
+		deploy_pre: [
+				environment: 'PRE',
+				approve: '',
+				type: 'eos'
+		],
+
+		deploy_pro: [
+				environment: 'PRO',
+				approve: 'alm-impes',
+				type: 'eos'
+		]
+)
